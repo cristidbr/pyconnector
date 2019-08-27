@@ -12,8 +12,34 @@ Just type `npm install pyconnector` and you are ready to go.
 
 ## Usage
 
+### Node.JS
 
+Create a new instance of `PyConnector` class having the desired options.
 
+```js
+// minimal.js
+const Path = require('path')
+const PyConnector = require('pyconnector')
+
+// create connector
+var PyAPI = new PyConnector({
+  // local port or remote IP:Port string '192.168.0.12:9000'
+  endpoint: 24001,
+  // pass null or remove option to prevent spawning a child process
+  path: Path.join(__dirname, 'minimal.py')
+});
+
+// query python resolvers
+(async function () {
+  console.log('Available Python routes:', await PyAPI.routes())
+  console.log('Python version:', await PyAPI.query('pyversion'))
+  console.log('Increment ++', await PyAPI.query('increment'))
+  console.log('Increment ++', await PyAPI.query('increment', { pass_var: 13 }))
+
+  // kill python process
+  PyAPI.end()
+})()
+```
 
 ## Background
 
