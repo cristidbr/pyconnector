@@ -1,5 +1,4 @@
 # PyConnector
-=============
 
 **`pyconnector`**: Bridge the gap between Node.JS and Python applications
 
@@ -9,20 +8,17 @@ for number crunching queries.
 
 
 ## Installation
-------
 
 Just type `npm install pyconnector` and you are ready to go.
 
 
 ## Background
--------
 
 PyConnector is intended to be used for rapid prototyping within POC applications. For production and advanced use cases, its
 recommended to use [ZeroMQ](https://zeromq.org/) Node.JS bindings, which this module already relies upon.
 
 
 ## License (MIT)
--------
 
 Copyright (C) 2019 Cristian Dobre
 
