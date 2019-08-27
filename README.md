@@ -41,9 +41,58 @@ var PyAPI = new PyConnector({
 })()
 ```
 
+### Python 
+
+#### Get **NodeConnector** sample module
+Download from here: [nodeconnector.py](https://gist.github.com/cristidbr/c134e7b33147c910353cb12309386dbf)
+
+#### Install Python dependencies
+`pip install argparse zmq`
+
+#### Create minimal.py file
+
+```py
+# minimal.py
+import sys
+import time
+import argparse
+import nodeconnector
+
+# argument parsing, PyConnector automatically sends this
+parser = argparse.ArgumentParser( description = 'Python Exposed API' )
+parser.add_argument( '--pynodeport', help = 'PyConnector Node.JS query port', default = 24001 )
+args = parser.parse_args()
+
+# create interface
+nodeq = nodeconnector.Interface( )
+
+# python version query
+def nodeq_version( args, ctx = {} ):
+    return ( '%d.%d.%d' % ( sys.version_info[ 0 ], sys.version_info[ 1 ], sys.version_info[ 2 ] ) )
+
+# increment value query
+def nodeq_increment( args, ctx = {} ):
+    # return value
+    ctx[ 'inc' ] += 1
+    args[ 'value' ] = ctx[ 'inc' ]
+
+    return args
+
+# queries are executed on a separate thread, a context dict can be used to pass data
+nodeq.handle( 'pyversion', nodeq_version )
+nodeq.handle( 'increment', nodeq_increment, dict( inc = 0 ) ) 
+
+# launch API
+nodeq.listen( port = args.pynodeport ) 
+
+# wait
+while( True ):
+    time.sleep( 0.001 )
+```
+
 ## Background
 
-PyConnector is intended to be used for rapid prototyping within POC applications. For production and advanced use cases, its
+**PyConnector** is intended to be used for rapid prototyping within POC applications. For production and advanced use cases, its
 recommended to use this [ZeroMQ package](https://www.npmjs.com/package/zeromq), which this module heavily relies upon.
 
 
