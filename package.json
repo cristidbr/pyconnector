@@ -1,0 +1,41 @@
+{
+  "name": "pyconnector",
+  "version": "0.0.9",
+  "description": "Bridge the gap between Node.JS and Python applications",
+  "author": "Cristian Dobre <cristian.dobre@hbfsrobotics.com>",
+  "main": "./src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cristidbr/pyconnector"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "dependencies": {
+    "zeromq": "^5.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0",
+    "standard": "^14.0.2"
+  },
+  "scripts": {
+    "test": "standard && mocha test/*.test.js",
+    "watch": "standard && mocha --watch test/*.test.js"
+  },
+  "readmeFilename": "README.md",
+  "license": "MIT",
+  "keywords": [
+    "python",
+    "python3",
+    "API",
+    "endpoint",
+    "remote",
+    "function",
+    "execution",
+    "bridge"
+  ],
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
+}
