@@ -32,7 +32,8 @@
     "remote",
     "function",
     "execution",
-    "bridge"
+    "bridge",
+    "nodeconnector"
   ],
   "directories": {
     "lib": "lib",
