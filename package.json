@@ -1,6 +1,6 @@
 {
   "name": "pyconnector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bridge the gap between Node.JS and Python applications",
   "author": "Cristian Dobre <cristian.dobre@hbfsrobotics.com>",
   "main": "./src/index.js",
@@ -32,7 +32,8 @@
     "remote",
     "function",
     "execution",
-    "bridge"
+    "bridge",
+    "nodeconnector"
   ],
   "directories": {
     "lib": "lib",

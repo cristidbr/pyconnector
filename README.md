@@ -43,11 +43,8 @@ var PyAPI = new PyConnector({
 
 ### Python 
 
-#### Get **NodeConnector** sample module
-Download from here: [nodeconnector.py](https://gist.github.com/cristidbr/c134e7b33147c910353cb12309386dbf) to your example folder.
-
 #### Install Python dependencies
-`pip install argparse zmq`
+`pip install nodeconnector argparse`
 
 #### Create minimal.py file
 
