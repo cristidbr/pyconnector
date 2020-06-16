@@ -12,7 +12,9 @@ class PyConnector {
       {
         port: 24001,
         endpoint: null,
+        launcher: 'python',
         path: null,
+        cwd: null,
         respawn: 0,
         local: true
       }, options))
@@ -50,11 +52,18 @@ class PyConnector {
   _processSpawn () {
     var ns = this
 
+    var launcher = this._opts.launcher
+    var pargs = [this._opts.path, '--pynodeport', this._opts.port]
+    var popts = { stdio: 'inherit' }
+
+    if (launcher == null) launcher = pargs.shift()
+    if (this._opts.cwd != null) popts.cwd = this._opts.cwd
+
     // create child process
     this._process = ChildProcess.spawn(
-      'python',
-      [this._opts.path, '--pynodeport', this._opts.port],
-      { stdio: 'inherit' }
+      launcher,
+      pargs,
+      popts
     )
 
     // error handling
