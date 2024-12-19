@@ -2,7 +2,7 @@ const Path = require('path')
 const PyConnector = require('pyconnector')
 
 // launch API
-var PyAPI = new PyConnector({
+const PyAPI = new PyConnector({
   endpoint: 24001,
   path: Path.join(__dirname, 'minimal.py')
 });

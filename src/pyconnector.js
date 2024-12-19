@@ -1,6 +1,6 @@
 'use strict'
 
-const ZMQ = require('zeromq')
+const ZMQ = require('zeromq/v5-compat')
 const ChildProcess = require('child_process')
 const { EventEmitter } = require('events')
 
@@ -41,8 +41,8 @@ class PyConnector {
 
   _responseHandle (data) {
     // response decoding
-    var response = JSON.parse(data.toString())
-    var evt = `q_${response._p}_${response._id}`
+    const response = JSON.parse(data.toString())
+    const evt = `q_${response._p}_${response._id}`
 
     // pass data
     this._events.emit(evt, response)
@@ -50,11 +50,11 @@ class PyConnector {
 
   // summon handler process
   _processSpawn () {
-    var ns = this
+    const ns = this
 
-    var launcher = this._opts.launcher
-    var pargs = [this._opts.path, '--pynodeport', this._opts.port]
-    var popts = { stdio: 'inherit' }
+    let launcher = this._opts.launcher
+    const pargs = [this._opts.path, '--pynodeport', this._opts.port]
+    const popts = { stdio: 'inherit' }
 
     if (launcher == null) launcher = pargs.shift()
     if (this._opts.cwd != null) popts.cwd = this._opts.cwd
@@ -130,14 +130,14 @@ class PyConnector {
   // query Python endpoint
   query (path, args, callback) {
     // increment identifier
-    var qdata = {
+    const qdata = {
       _p: path,
       _id: this._qid++,
-      args: args
+      args
     }
 
     // asyncronous response
-    var query = new Promise((resolve, reject) => {
+    const query = new Promise((resolve, reject) => {
       // set callback
       this._events.once(`q_${qdata._p}_${qdata._id}`, (response) => {
         resolve(response.data)
